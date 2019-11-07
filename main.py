@@ -11,19 +11,14 @@ import List as ls
 import Utils as u
 
 
-class Data:
+# Datos que contiene el objeto PACIENTE
+class Paciente:
     def __init__(self, _code=None, _names=None, _lastNames=None, _address=None, _phone=None):
         self.code = _code  # campo codigo
         self.names = _names  # campo que almacena el nombre
         self.lastNames = _lastNames  # campo que almacena el apellido
         self.address = _address  # campo que almacena la direccion
         self.phone = _phone   # campo que almacena el telefono
-
-    def getData(self):
-        print("Data")
-
-    def set(self):
-        print("setDAta")
 
 
 # -------------------- MENU PRINCIPAL --------------------
@@ -37,129 +32,80 @@ def menu():
     print(" 4. MOSTRAR LISTADO                       ")
     print(" 5. COPIAR DATOS DE UN PACIENTE A OTRO    ")
     print(" 6. SALIR                                 ")
-    return input ("\n Ingrese opcion : ")
+    return input("\n Ingrese opcion : ")
 
 
 # ----------------- MENU ACTUALIZAR UN DATO---------------
 def menu_actualizar():
-    print ("\n\t\t[    ESPECIFIQUE CAMPO A ACTUALIZAR    ]\n  ")
-    print ("\t\t----------------------------\n\n              ")
-    print (" 1. NOMBRES                                       ")
-    print (" 2. APELLIDOS                                     ")
-    print (" 3. DIRECCION                                     ")
-    print (" 4. TELEFONO                                      ")
-    print (" 5. SALIR                                         ")
+    print("\n\t\t[    ESPECIFIQUE CAMPO A ACTUALIZAR    ]\n  ")
+    print("\t\t----------------------------\n\n              ")
+    print(" 1. NOMBRES                                       ")
+    print(" 2. APELLIDOS                                     ")
+    print(" 3. DIRECCION                                     ")
+    print(" 4. TELEFONO                                      ")
+    print(" 5. SALIR                                         ")
     return input("\n Ingrese opcion : ")
 
 
 # -------------------- REGISTRAR PACIENTES ------------------
 def registrar_pacientes(lista):
-    register = Data()
-    print("\n\n\t\t[  REGISTRO  ]\n")
-    print("\t\t--------------------")
-    print("\n\tDATOS DEL PACIENTE ")
-    register.code = input("\n\n\tCODIGO:")
-    register.name = input("\n\tNOMBRES:")
-    register.last_name = input("\tAPELLIDOS:")
-    register.address = input("\tDIRECCION:")
-    register.phone = input("\n\tTELEFONO:")
+    register = Paciente()
+    print("\n[  REGISTRO  ]")
+    print("--------------------")
+    print("\nDATOS DEL PACIENTE ")
+    register.code = input("CODIGO:")
+    register.name = input("NOMBRES:")
+    register.lastNames = input("APELLIDOS:")
+    register.address = input("DIRECCION:")
+    register.phone = input("TELEFONO:")
 
     lista.add_at_front(register)
 
 
 # ------------------------ ELIMINAR PACIENTE ---------------------
 def eliminar_paciente(lista):
-    # int cod;
-    # PLista q,t;
-    # q=lista;
-
-    print("\n\n\n\tELIMINAR UN PACIENTE")
-    print("\n\n\tINGRESE CODIGO:")
+    print("\nELIMINAR UN PACIENTE")
+    code = input("INGRESE CODIGO:")
+    lista.delete_node(code)
 
 
 # -------------------- ACTUALIZAR PACIENTE -------------------
 def actualizar_paciente(lista):
-    print("")
-    # int cod, x;
-    # PLista q;
-    # q=lista;
+    print("ACTUALIZAR REGISTRO DE PACIENTE")
+    cod = input("INGRESE CODIGO:")
+    head = lista.head
 
-    # cout<<"\n\n\n\tACTUALIZAR REGISTRO DE PACIENTE";
-    # cout<<"\n\n\tINGRESE CODIGO:"; cin>>cod;
-    #
-    # while(q!=NULL){
-    #
-    #         if(q->codigo==cod){
-    #             system("cls");
-    #             cout<<"\n\tDATOS DEL PACIENTE  ";
-    #             cout<<"\n\t--------------------";
-    #             cout<<"\n\n\tCODIGO   : "<<q->codigo<<endl;
-    #             cout<<"\n\tNOMBRES  : "<<q->nombres<<endl;
-    #             cout<<"\tAPELLIDOS: "<<q->apellidos<<endl;
-    #             cout<<"\tDIRECCION: "<<q->direccion<<endl;
-    #             cout<<"\tTELEFONO : "<<q->telefono<<endl;
-    #
-    #             menu_actualizar();
-    #             cin>>x;
-    #
-    #             switch(x){
-    #
-    #                 case 1: cout<<"\n\n\tINGRESE NOMBRES:";
-    #                         cin.ignore(); cin.getline(q->nombres,maxchar);
-    #                         break;
-    #
-    #                 case 2: cout<<"\n\n\tINGRESE APELLIDOS:";
-    #                         cin.ignore(); cin.getline(q->apellidos,maxchar);
-    #                         break;
-    #
-    #                 case 3: cout<<"\n\n\tINGRESE DIRECCION:";
-    #                         cin.ignore(); cin.getline(q->direccion,maxchar);
-    #                         break;
-    #
-    #                 case 4: cout<<"\n\n\tINGRESE TELEFONO:";
-    #                         cin>>q->telefono;
-    #                         break;
-    #
-    #                 default: cout<<"\nINGRESE UNA OPCION VALIDA...\n"; break;
-    #
-    #             }
-    #             cout<<"\n\n\tREGISTRO ACTUALIZADO...!!!!!\n";
-    #
-    #             return;
-    #
-    #         }else {
-    #
-    #
-    #             q=q->sgte;
-    #
-    #     }
-    #
-    # }
-    # if(q==NULL)
-    #     cout<<"\n\tCODIGO INCORRECTO...!!\n";
+    while head != None:
+        dtP = head.data
+        if dtP.code == cod:
+            u.clear()
+            print("\n\tDATOS DEL PACIENTE  ")
+            print("\n\t--------------------")
+            print("\n\n\tCODIGO   : ", dtP.code)
+            print("\tNOMBRES  : ", dtP.names)
+            print("\tAPELLIDOS: ", dtP.lastNames)
+            print("\tDIRECCION: ", dtP.address)
+            print("\tTELEFONO : ", dtP.phone)
 
-# /*---------------------- FUNCION MOSTRAR PACIENTE -------------------*/
-# def mostrar_pacientes(q):
-#
-#     int i=1;
-#
-#     while(q!=NULL){
-#
-#         cout<<"\n\tDATOS DEL PACIENTE ["<<i<<"] ";
-#         cout<<"\n\t------------------------";
-#         cout<<"\n\n\tCODIGO   : "<<q->codigo<<endl;
-#         cout<<"\n\tNOMBRES  : "<<q->nombres<<endl;
-#         cout<<"\tAPELLIDOS: "<<q->apellidos<<endl;
-#         cout<<"\tDIRECCION: "<<q->direccion<<endl;
-#         cout<<"\tTELEFONO : "<<q->telefono<<endl;
-#
-#         q=q->sgte;
-#
-#         i++;
-#     }
-#
-#
-#
+            pos = menu_actualizar()
+
+            if pos <= "0" or pos >= "6":
+                print("INGRSE UNA OPCION VALIDA")
+            elif pos == "1":
+                dtP.names = input("INGRESE NOMBRES:")
+            elif pos == "2":
+                dtP.lastNames = input("INGRESE APELLIDOS:")
+            elif pos == "3":
+                dtP.adress = input("INGRESE DIRECCION:")
+            elif pos == "4":
+                dtP.phones = input("INGRESE TELEFONO:")
+            elif pos == "5":
+                head = None
+        else:
+            head = head.next
+
+
+
 # # /*--------------- FUNCION COPIAR DATOS DE UN PACIENTEA OTRO ------------------*/
 # void copiar_datos_paciente(PLista lista){
 #
@@ -246,42 +192,43 @@ def actualizar_paciente(lista):
 # /*------------------------- FUNCION PRINCIPAL -------------------*/
 def main():
     out = False
-    list = ls.List()
+    listPacientes = ls.List()
 
-    # PLista lista=NULL;
     while not out:
 
         u.clear()
         option = menu()
         u.clear()
-        if option == "1":
-            registrar_pacientes(list)
+
+        if option <= "0" or option >= "7":
+            print("\nINGRESE UNA OPCION VALIDA...\n")
+
+        elif option == "1":
+            registrar_pacientes(listPacientes)
+
         elif option == "2":
-            list.print_list()
-            # if list.isEmty():
-            #     emptyData()
-            # else:
-            #     eliminar_paciente(lista)
+            if listPacientes.is_empty():
+                u.emptyData()
+            else:
+                eliminar_paciente(listPacientes)
         elif option == "3":
             print(option)
-            # if list.isEmty():
-            #     emptyData()
-            # else:
-            #     actualizar_paciente(lista)
+            if listPacientes.is_empty():
+                u.emptyData()
+            else:
+                actualizar_paciente(listPacientes)
         elif option == "4":
-            print(option)
-            # if list.isEmty():
-            #     emptyData()
-            # else:
-            #     mostrar_pacientes(lista)
+            if listPacientes.is_empty():
+                u.emptyData()
+            else:
+                listPacientes.print_list()
         elif option == "5":
             print(option)
-            # if list.isEmty():
-            #     emptyData()
-            # else:
-            #     copiar_datos_paciente(lista)
-        elif option <= "0" or option >= "7":
-            print("\nINGRESE UNA OPCION VALIDA...\n")
+            if listPacientes.is_empty():
+                u.emptyData()
+            else:
+                print("Proximamente...")
+                #copiar_datos_paciente(listPacientes)
 
         if option != "6":
             u.pause()

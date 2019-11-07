@@ -35,7 +35,7 @@ class List:
     def delete_node(self, key):
         curr = self.head
         prev = None
-        while curr and curr.data != key:
+        while curr and curr.data.code != key:
             prev = curr
             curr = curr.next
         if prev is None:
@@ -54,7 +54,17 @@ class List:
     # Método para imprimir la lista de nodos
     def print_list(self):
         node = self.head
+        i = 1
         while node != None:
-            print(node.data, end=" => ")
+            dtP = node.data
+            print("\n\tDATOS DEL PACIENTE [" + str(i) + "] ")
+            print("\n\t------------------------")
+            print("\n\n\tCODIGO   : ", dtP.code)
+            print("\tNOMBRES  : ", dtP.names)
+            print("\tAPELLIDOS: ", dtP.lastNames)
+            print("\tDIRECCION: ", dtP.address)
+            print("\tTELEFONO : ", dtP.phone)
+            # print(node.data, end=" => ")
             node = node.next
+            i += 1
 
